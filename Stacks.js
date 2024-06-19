@@ -47,6 +47,5 @@ console.clear();
 // }
 
 console.log(stack.search("Metro"));
-
-// console.log("peek",stack.peek());
-// console.log('pop',stack.pop());
+console.log("peek",stack.peek());
+console.log('pop',stack.pop());

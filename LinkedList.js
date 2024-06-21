@@ -23,11 +23,15 @@ class LinkedList{
             this.head = node;        // Ustawiamy nowy węzeł jako głowę listy
         } else {
             let current = this.head;  // Rozpoczynamy od głowy listy
-            while (current.next) {    // Przechodzimy do końca listy: dopóki nie bedzie next= null
+            while (current.next !== null) {    // Przechodzimy do końca listy: dopóki nie bedzie next = null
+                console.log("current: ",current);
+                console.log("next: ",current.next);
+                
                 current = current.next;
             }
             current.next = node;      // Dodajemy nowy węzeł na końcu listy
         }
+        //console.log(JSON.stringify(this.head, null, 2));
         this.size++;  // Zwiększamy rozmiar listy
     }
 
@@ -58,10 +62,10 @@ let list = new LinkedList();
 list.add("A");
 list.add('B');
 list.add("C");
-list.add("D");
-list.add("E")
-list.add("G")
+// list.add("D");
+// list.add("E")
+// list.add("G")
 
-console.log("usunięty: ",list.remove(2));
+//console.log("usunięty: ",list.remove(2));
 
-console.log(JSON.stringify(list, null, 2))
+//console.log(JSON.stringify(list, null, 2))

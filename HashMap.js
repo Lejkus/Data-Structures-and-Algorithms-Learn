@@ -15,7 +15,21 @@ class HashTable{
 
     set(key,value){
         const index = this._hash(key)
-        this.table[index] = value
+
+        const bucket = this.table[index]    //sprawdzamy czy coś już jest w tym 'slocie'
+
+        if(!bucket){
+            this.table[index] = [[key,value]]   //jeśli nie , tworzymy nowy slot
+        }else{
+            const sameKeyItem = bucket.find(item => item[0] === key) //sprawdzamy czy istnieje taki key
+
+            if(sameKeyItem){
+                sameKeyItem[1] = value     //jeśli istnieje zamieniamy wartość na nową
+            }else{
+                bucket.push([key,value])   // jeśli nie to dodajemy 
+            }
+            
+        }
     }
     
     get(key){
@@ -29,7 +43,7 @@ class HashTable{
     }
 
     display(){
-        console.clear()
+        //console.clear()
         for(let i = 0; i < this.size; i++){
             console.log(this.table[i]);
         }
@@ -45,8 +59,12 @@ table.set('pl','Poland')
 table.set('uk','Ukraine')
 table.set('ru','Russia')
 table.set('nt','Netherland') //france
-table.set('br','Brasil')
-table.set('ge','Germany') //ukraine
+//table.set('br','Brasil')
+//table.set('ge','Germany') //ukraine
+table.set('pl','Palermo')
+
+
+//console.log(table.get('pl'));
 
 table.display()
 

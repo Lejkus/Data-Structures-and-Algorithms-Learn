@@ -34,12 +34,35 @@ class HashTable{
     
     get(key){
         const index = this._hash(key)
-        return(this.table[index]);
+
+        if(this.table[index].length>1){
+            if(this.table[index].find((element) => element[0] === key)){
+                return this.table[index].find((element) => element[0] === key)
+            }else{
+                return "not found"
+            }
+        }else{
+            if(this.table[index][0] === key){
+                return(this.table[index]);
+            }else{
+                return "not found"
+            }
+        }
     }
 
     remove(key){
         const index = this._hash(key)
-        this.table[index] = undefined
+        console.log(index);
+
+        if(this.table[index].length>1){
+            let elementIndex = this.table[index].findIndex((element) => element[0] === key) 
+            this.table[index].splice(elementIndex,1)
+        }else{
+            if(this.table[index][0] === key){
+                this.table[index] = undefined
+            }
+        }
+
     }
 
     display(){
@@ -64,7 +87,7 @@ table.set('nt','Netherland') //france
 table.set('pl','Palermo')
 
 
-//console.log(table.get('pl'));
+table.remove('fr')
 
 table.display()
 

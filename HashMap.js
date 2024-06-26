@@ -35,15 +35,19 @@ class HashTable{
     get(key){
         const index = this._hash(key)
 
-        if(this.table[index].length>1){
-            if(this.table[index].find((element) => element[0] === key)){
-                return this.table[index].find((element) => element[0] === key)
+        const bucket = this.table[index]
+
+        if(bucket.length>1){
+            const sameKeyItem = bucket.find(item => item[0] === key)
+
+            if(sameKeyItem){
+                return sameKeyItem
             }else{
                 return "not found"
             }
         }else{
-            if(this.table[index][0] === key){
-                return(this.table[index]);
+            if(bucket[0] === key){
+                return(bucket);
             }else{
                 return "not found"
             }
@@ -52,14 +56,15 @@ class HashTable{
 
     remove(key){
         const index = this._hash(key)
-        console.log(index);
 
-        if(this.table[index].length>1){
-            let elementIndex = this.table[index].findIndex((element) => element[0] === key) 
-            this.table[index].splice(elementIndex,1)
+        const bucket = this.table[index]
+
+        if(bucket.length>1){
+            let itemIndex = bucket.findIndex((item) => item[0] === key) 
+            bucket.splice(itemIndex,1)
         }else{
-            if(this.table[index][0] === key){
-                this.table[index] = undefined
+            if(bucket[0] === key){
+                bucket = undefined
             }
         }
 
@@ -86,7 +91,7 @@ table.set('nt','Netherland') //france
 //table.set('ge','Germany') //ukraine
 table.set('pl','Palermo')
 
-
+console.log(table.get('fr'));
 table.remove('fr')
 
 table.display()

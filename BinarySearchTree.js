@@ -54,6 +54,19 @@ class BinarySearchTree {
             else if(value > root.value){
                 return this.search(root.right,value)
             }
+            
+        }
+    }
+
+    preOrder(root){
+        console.log(root);
+        if(!root){
+            return false
+        }else{
+            //console.log(root.value);
+            
+            this.preOrder(root.left)
+            this.preOrder(root.right)
         }
     }
     
@@ -62,10 +75,12 @@ class BinarySearchTree {
 const tree = new BinarySearchTree()
 
 tree.insert(10)
+tree.insert(5)
 tree.insert(15)
 tree.insert(7)
 tree.insert(3)
 
-console.log(tree.search(tree.root,15))
+// console.log(tree.search(tree.root,15))
+// console.log(JSON.stringify(tree));
 
-console.log(JSON.stringify(tree));
+tree.preOrder(tree.root)
